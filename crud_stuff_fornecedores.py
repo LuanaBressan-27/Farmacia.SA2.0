@@ -4,7 +4,7 @@ import mysql.connector
 MYSQL_HOST = 'localhost'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = ''  # Substitua pelo seu password, se necessário
-MYSQL_DATABASE = 'farmacia_sa'
+MYSQL_DATABASE = 'farmacia_sa2.0'
 
 def get_connection():
     """Estabelece conexão com o banco de dados"""

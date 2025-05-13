@@ -7,7 +7,7 @@ class Database:
         self.MYSQL_HOST = "localhost"
         self.MYSQL_USER = "root"
         self.MYSQL_PASSWORD = ""
-        self.MYSQL_DATABASE = "farmacia_sa"
+        self.MYSQL_DATABASE = "farmacia_sa2.0"
 
         # Inicializa o banco de dados e cria a tabela, se não existir
         self.initialize_database()

@@ -7,7 +7,7 @@ class Database:
                 host="localhost",
                 user="root",  # Substitua pelo seu usuário
                 password="",  # Substitua pela sua senha
-                database="farmacia_sa"
+                database="farmacia_sa2.0"
             )
             if self.connection.is_connected():
                 self.cursor = self.connection.cursor()
