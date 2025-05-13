@@ -17,11 +17,11 @@ jan.resizable(width=False, height=False)
 Titulo = Label(jan, text="Login:", font=("Century Gothic", 25), bg="red", fg="White")
 Titulo.place(x=1, y=50)
 
-# Adicionar campos de usuário e senha
-NomeLabel = Label(jan, text="Nome:", font=("Century Gothic", 10), bg="orange", fg="White")
-NomeLabel.place(x=250, y=125)
-NomeEntry = ttk.Entry(jan, width=30)
-NomeEntry.place(x=305, y=125)
+# Adicionar campos de nome e senha
+nomeLabel = Label(jan, text="Nome: ", font=("Century Gothic", 10), bg="ORANGE", fg="White")
+nomeLabel.place(x=1, y=125)
+nomeEntry = ttk.Entry(jan, width=30)
+nomeEntry.place(x=60, y=125)
 
 senhaLabel = Label(jan, text="Senha: ", font=("Century Gothic", 10), bg="ORANGE", fg="White")
 senhaLabel.place(x=1, y=155)
@@ -30,7 +30,7 @@ senhaEntry.place(x=55, y=155)
 
 # Função de login
 def Login():
-    nome = NomeEntry.get()
+    nome = nomeEntry.get()
     senha = senhaEntry.get()
 
     # Conectar ao banco de dados
@@ -40,7 +40,7 @@ def Login():
         cursor = conn.cursor()
 
         # Consulta para verificar as credenciais
-        cursor.execute("SELECT * FROM usuario WHERE Nome = %s AND senha = %s", (nome, senha))
+        cursor.execute("SELECT * FROM usuario WHERE nome = %s AND senha = %s", (nome, senha))
         VerifiyLogin = cursor.fetchone()
 
         if VerifiyLogin:
@@ -67,6 +67,7 @@ def registrar():
     RegisterButton.place_forget()
 
     # Inserir widgets de cadastro
+
     EmailLabel = Label(jan, text="Email:", font=("Century Gothic", 10), bg="orange", fg="White")
     EmailLabel.place(x=250, y=155)
     EmailEntry = ttk.Entry(jan, width=30)
@@ -74,7 +75,7 @@ def registrar():
 
     # Função para registrar no banco de dados
     def RegistrarNoBanco():
-        nome = NomeEntry.get()
+        nome = nomeEntry.get()
         email = EmailEntry.get()
         senha = senhaEntry.get()
 
@@ -87,19 +88,19 @@ def registrar():
                 cursor = conn.cursor()
 
                 # Verificar se o usuário já existe
-                cursor.execute("SELECT * FROM nome WHERE nome = %s", (nome,))
+                cursor.execute("SELECT * FROM usuario WHERE nome = %s", (nome,))
                 VerifiyLogin = cursor.fetchone()
                 if VerifiyLogin:
                     messagebox.showerror(title="Erro de Registro", message="Usuário já cadastrado!")
                 else:
                     # Inserir novo usuário
-                    cursor.execute("INSERT INTO usuario (nome, email, usuario, senha) VALUES (%s, %s, %s)",
-                                   (nome, email,senha))
+                    cursor.execute("INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)",
+                                   (nome, email, senha))
                     conn.commit()
                     messagebox.showinfo(title="Registro", message="Usuário registrado com sucesso!")
 
                     # Limpar campos após o registro
-                    NomeEntry.delete(0, END)
+                    nomeEntry.delete(0, END)
                     EmailEntry.delete(0, END)
                     senhaEntry.delete(0, END)
 
@@ -117,14 +118,18 @@ def registrar():
 
     # Função para voltar à tela de login
     def VoltarLogin():
-        NomeLabel.place_forget()
-        NomeEntry.place_forget()
+        nomeLabel.place_forget()
+        nomeEntry.place_forget()
         EmailLabel.place_forget()
         EmailEntry.place_forget()
         Register.place_forget()
         Voltar.place_forget()
 
         # Trazer de volta os widgets de login
+        nomeLabel.place(x=1, y=125)
+        nomeEntry.place(x=60, y=125)
+        senhaLabel.place(x=1, y=155)
+        senhaEntry.place(x=55, y=155)
         LoginButton.place(x=150, y=180)
         RegisterButton.place(x=300, y=180)
 
