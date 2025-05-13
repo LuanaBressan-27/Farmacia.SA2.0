@@ -67,7 +67,6 @@ def registrar():
     RegisterButton.place_forget()
 
     # Inserir widgets de cadastro
-    
     EmailLabel = Label(jan, text="Email:", font=("Century Gothic", 10), bg="orange", fg="White")
     EmailLabel.place(x=250, y=155)
     EmailEntry = ttk.Entry(jan, width=30)
