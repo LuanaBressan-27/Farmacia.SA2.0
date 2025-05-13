@@ -40,7 +40,7 @@ def Login():
         cursor = conn.cursor()
 
         # Consulta para verificar as credenciais
-        cursor.execute("SELECT * FROM usuario WHERE Nome = %s AND senha = %s", (usuario, senha))
+        cursor.execute("SELECT * FROM usuario WHERE Nome = %s AND senha = %s", (nome, senha))
         VerifiyLogin = cursor.fetchone()
 
         if VerifiyLogin:
