@@ -1,24 +1,22 @@
 import mysql.connector
 
-MYSQL_HOST = 'localhost'
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = ''
-MYSQL_DATABASE = 'farmacia_sa2.0'
-
 def get_connection():
     return mysql.connector.connect(
-        host=MYSQL_HOST,
-        user=MYSQL_USER,
-        password=MYSQL_PASSWORD,
-        database=MYSQL_DATABASE
+        host='localhost',
+        user='root',
+        password='',
+        database='farmacia_sa2.0'
     )
 
-def add_product(produto, quantidade, valor, fornecedor, descricao, validade):
+def add_product(nome_produto, tipo, quantidade_enviada, tempo_de_validade, data_de_fabricacao, lote, fornecedor, quantidade_em_estoque):
     conn = get_connection()
     cursor = conn.cursor()
-    # Ordem dos valores corrigida
-    query = "INSERT INTO produto (produto, quantidade, valor, fornecedor, descricao, validade) VALUES (%s, %s, %s, %s, %s, %s)"
-    cursor.execute(query, (produto, quantidade, valor, fornecedor, descricao, validade))
+    query = """
+        INSERT INTO produto
+        (nome_produto, tipo, quantidade_enviada, tempo_de_validade, data_de_fabricacao, lote, fornecedor, quantidade_em_estoque)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    """
+    cursor.execute(query, (nome_produto, tipo, quantidade_enviada, tempo_de_validade, data_de_fabricacao, lote, fornecedor, quantidade_em_estoque))
     conn.commit()
     cursor.close()
     conn.close()
@@ -26,28 +24,36 @@ def add_product(produto, quantidade, valor, fornecedor, descricao, validade):
 def read_products():
     conn = get_connection()
     cursor = conn.cursor()
-    query = "SELECT * FROM produto"
-    cursor.execute(query)
+    cursor.execute("SELECT * FROM produto")
     result = cursor.fetchall()
     cursor.close()
     conn.close()
     return result
 
-def update_product(produto, quantidade, valor, fornecedor, descricao, validade, idproduto):
+def update_product(idproduto, nome_produto, tipo, quantidade_enviada, tempo_de_validade, data_de_fabricacao, lote, fornecedor, quantidade_em_estoque):
     conn = get_connection()
     cursor = conn.cursor()
-    # Nome da coluna corrigido para "descricao"
-    query = "UPDATE produto SET produto=%s, quantidade=%s, valor=%s, fornecedor=%s, descricao=%s, validade=%s WHERE idproduto=%s"
-    cursor.execute(query, (produto, quantidade, valor, fornecedor, descricao, validade, idproduto))
+    query = """
+        UPDATE produto SET
+        nome_produto = %s,
+        tipo = %s,
+        quantidade_enviada = %s,
+        tempo_de_validade = %s,
+        data_de_fabricacao = %s,
+        lote = %s,
+        fornecedor = %s,
+        quantidade_em_estoque = %s
+        WHERE idproduto = %s
+    """
+    cursor.execute(query, (nome_produto, tipo, quantidade_enviada, tempo_de_validade, data_de_fabricacao, lote, fornecedor, quantidade_em_estoque, idproduto))
     conn.commit()
     cursor.close()
     conn.close()
 
-def delete_product(product_id):
+def delete_product(idproduto):
     conn = get_connection()
     cursor = conn.cursor()
-    query = "DELETE FROM produto WHERE idproduto=%s"
-    cursor.execute(query, (product_id,))
+    cursor.execute("DELETE FROM produto WHERE idproduto = %s", (idproduto,))
     conn.commit()
     cursor.close()
     conn.close()

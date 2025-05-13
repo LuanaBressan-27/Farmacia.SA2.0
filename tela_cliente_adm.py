@@ -1,0 +1,1 @@
+<código da tela_cliente_adm.py que está na resposta acima>
