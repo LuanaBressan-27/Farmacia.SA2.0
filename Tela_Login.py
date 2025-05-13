@@ -26,12 +26,16 @@ nomeEntry.place(x=55, y=125)
 senhaLabel = Label(jan, text="Senha: ", font=("Century Gothic", 10), bg="ORANGE", fg="White")
 senhaLabel.place(x=1, y=155)
 senhaEntry = ttk.Entry(jan, width=30, show="*")
-senhaEntry.place(x=54, y=155)
+senhaEntry.place(x=55, y=155)
 
 # Função de login
 def Login():
     nome = nomeEntry.get()
     senha = senhaEntry.get()
+
+    if nome == "" or senha == "":
+        messagebox.showerror(title="Erro de Login", message="Todos os campos devem ser preenchidos")
+        return
 
     # Conectar ao banco de dados
     try:
@@ -80,41 +84,42 @@ def registrar():
         senha = senhaEntry.get()
 
         if nome == "" or email == "" or senha == "":
-            messagebox.showerror(title="Erro de Registro", message="Preencha todos os campos!")
-        else:
-            try:
-                db = Database()
-                conn = db.get_connection()
-                cursor = conn.cursor()
+            messagebox.showerror(title="Erro de Registro", message="Todos os campos devem ser preenchidos")
+            return
 
-                # Verificar se o usuário já existe
-                cursor.execute("SELECT * FROM usuario WHERE nome = %s", (nome,))
-                VerifiyLogin = cursor.fetchone()
-                if VerifiyLogin:
-                    messagebox.showerror(title="Erro de Registro", message="Usuário já cadastrado!")
-                else:
-                    # Inserir novo usuário
-                    cursor.execute("INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)",
-                                   (nome, email, senha))
-                    conn.commit()
-                    messagebox.showinfo(title="Registro", message="Usuário registrado com sucesso!")
+        try:
+            db = Database()
+            conn = db.get_connection()
+            cursor = conn.cursor()
 
-                    # Limpar campos após o registro
-                    nomeEntry.delete(0, END)
-                    EmailEntry.delete(0, END)
-                    senhaEntry.delete(0, END)
+            # Verificar se o usuário já existe
+            cursor.execute("SELECT * FROM usuario WHERE nome = %s", (nome,))
+            VerifiyLogin = cursor.fetchone()
+            if VerifiyLogin:
+                messagebox.showerror(title="Erro de Registro", message="Usuário já cadastrado!")
+            else:
+                # Inserir novo usuário
+                cursor.execute("INSERT INTO usuario (nome, email, senha) VALUES (%s, %s, %s)",
+                               (nome, email, senha))
+                conn.commit()
+                messagebox.showinfo(title="Registro", message="Usuário registrado com sucesso!")
 
-            except Exception as e:
-                messagebox.showerror(title="Erro de Conexão", message=f"Ocorreu um erro: {e}")
+                # Limpar campos após o registro
+                nomeEntry.delete(0, END)
+                EmailEntry.delete(0, END)
+                senhaEntry.delete(0, END)
 
-            finally:
-                if 'cursor' in locals():
-                    cursor.close()
-                if 'conn' in locals():
-                    conn.close()
+        except Exception as e:
+            messagebox.showerror(title="Erro de Conexão", message=f"Ocorreu um erro: {e}")
+
+        finally:
+            if 'cursor' in locals():
+                cursor.close()
+            if 'conn' in locals():
+                conn.close()
 
     Register = ttk.Button(jan, text="Registrar", width=15, command=RegistrarNoBanco)
-    Register.place(x=150, y=225)
+    Register.place(x=300, y=180)
 
     # Função para voltar à tela de login
     def VoltarLogin():
@@ -129,12 +134,12 @@ def registrar():
         nomeLabel.place(x=1, y=125)
         nomeEntry.place(x=55, y=125)
         senhaLabel.place(x=1, y=155)
-        senhaEntry.place(x=54, y=155)
+        senhaEntry.place(x=55, y=155)
         LoginButton.place(x=150, y=180)
         RegisterButton.place(x=300, y=180)
 
     Voltar = ttk.Button(jan, text="Voltar", width=15, command=VoltarLogin)
-    Voltar.place(x=300, y=225)
+    Voltar.place(x=150, y=180)
 
 # Botões principais
 LoginButton = ttk.Button(jan, text="Login", width=15, command=Login)
