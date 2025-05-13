@@ -21,12 +21,12 @@ Titulo.place(x=1, y=50)
 nomeLabel = Label(jan, text="Nome: ", font=("Century Gothic", 10), bg="ORANGE", fg="White")
 nomeLabel.place(x=1, y=125)
 nomeEntry = ttk.Entry(jan, width=30)
-nomeEntry.place(x=60, y=125)
+nomeEntry.place(x=55, y=125)
 
 senhaLabel = Label(jan, text="Senha: ", font=("Century Gothic", 10), bg="ORANGE", fg="White")
 senhaLabel.place(x=1, y=155)
 senhaEntry = ttk.Entry(jan, width=30, show="*")
-senhaEntry.place(x=55, y=155)
+senhaEntry.place(x=54, y=155)
 
 # Função de login
 def Login():
@@ -69,9 +69,9 @@ def registrar():
     # Inserir widgets de cadastro
 
     EmailLabel = Label(jan, text="Email:", font=("Century Gothic", 10), bg="orange", fg="White")
-    EmailLabel.place(x=250, y=155)
+    EmailLabel.place(x=250, y=125)
     EmailEntry = ttk.Entry(jan, width=30)
-    EmailEntry.place(x=305, y=155)
+    EmailEntry.place(x=295, y=125)
 
     # Função para registrar no banco de dados
     def RegistrarNoBanco():
@@ -127,9 +127,9 @@ def registrar():
 
         # Trazer de volta os widgets de login
         nomeLabel.place(x=1, y=125)
-        nomeEntry.place(x=60, y=125)
+        nomeEntry.place(x=55, y=125)
         senhaLabel.place(x=1, y=155)
-        senhaEntry.place(x=55, y=155)
+        senhaEntry.place(x=54, y=155)
         LoginButton.place(x=150, y=180)
         RegisterButton.place(x=300, y=180)
 
