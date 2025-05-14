@@ -53,7 +53,7 @@ class ProdutoADMApp:
 
     def atualizar(self):
         try:
-            id_produto = self.entries["id"].get()
+            id_produto = self.entries["id"].get().strip()
             if not id_produto:
                 raise ValueError("ID obrigatório para atualizar.")
             dados = self.obter_dados(sem_id=True)
@@ -65,7 +65,7 @@ class ProdutoADMApp:
 
     def excluir(self):
         try:
-            id_produto = self.entries["id"].get()
+            id_produto = self.entries["id"].get().strip()
             if not id_produto:
                 raise ValueError("ID obrigatório para exclusão.")
             delete_product(id_produto)
@@ -91,7 +91,13 @@ class ProdutoADMApp:
         campos = self.entries.copy()
         if sem_id:
             campos.pop("id")
-        return {chave: entry.get() for chave, entry in campos.items()}
+        dados = {}
+        for chave, entry in campos.items():
+            valor = entry.get().strip()
+            if not valor:
+                raise ValueError("Todos os campos devem ser preenchidos!")
+            dados[chave] = valor
+        return dados
 
     def limpar(self):
         for entry in self.entries.values():
