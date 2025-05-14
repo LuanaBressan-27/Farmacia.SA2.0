@@ -16,19 +16,19 @@ class Database:
             self.connection = None
             self.cursor = None
 
-    def inserir_funcionario(self, nome, cpf, email, telefone, funcao, qtd_vendas, salario, data_inicio):
+    def inserir_funcionario(self, nome, cpf, email, telefone, funcao, qtd_vendas, salario, inicio_contrato):
         try:
             query = """
                 INSERT INTO funcionario
                 (nome, cpf, email, telefone, funcao, quantidade_vendas, salario, inicio_contrato)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             """
-            self.cursor.execute(query, (nome, cpf, email, telefone, funcao, qtd_vendas, salario, data_inicio))
+            self.cursor.execute(query, (nome, cpf, email, telefone, funcao, qtd_vendas, salario, inicio_contrato))
             self.connection.commit()
         except mysql.connector.Error as e:
-            print(f"Erro ao inserir funcionário: {e}")
+            raise Exception(f"Erro ao inserir funcionário: {e}")
 
-    def alterar_funcionario(self, idfuncionario, nome, cpf, email, telefone, funcao, qtd_vendas, salario, data_inicio):
+    def alterar_funcionario(self, idfuncionario, nome, cpf, email, telefone, funcao, qtd_vendas, salario, inicio_contrato):
         try:
             query = """
                 UPDATE funcionario SET
@@ -36,10 +36,10 @@ class Database:
                 funcao = %s, quantidade_vendas = %s, salario = %s, inicio_contrato = %s
                 WHERE idfuncionario = %s
             """
-            self.cursor.execute(query, (nome, cpf, email, telefone, funcao, qtd_vendas, salario, data_inicio, idfuncionario))
+            self.cursor.execute(query, (nome, cpf, email, telefone, funcao, qtd_vendas, salario, inicio_contrato, idfuncionario))
             self.connection.commit()
         except mysql.connector.Error as e:
-            print(f"Erro ao alterar funcionário: {e}")
+            raise Exception(f"Erro ao alterar funcionário: {e}")
 
     def excluir_funcionario(self, idfuncionario):
         try:
@@ -47,7 +47,7 @@ class Database:
             self.cursor.execute(query, (idfuncionario,))
             self.connection.commit()
         except mysql.connector.Error as e:
-            print(f"Erro ao excluir funcionário: {e}")
+            raise Exception(f"Erro ao excluir funcionário: {e}")
 
     def listar_funcionarios(self):
         try:
@@ -55,8 +55,15 @@ class Database:
             self.cursor.execute(query)
             return self.cursor.fetchall()
         except mysql.connector.Error as e:
-            print(f"Erro ao listar funcionários: {e}")
-            return []
+            raise Exception(f"Erro ao listar funcionários: {e}")
+
+    def verificar_login(self, nome, email):
+        try:
+            query = "SELECT * FROM funcionario WHERE nome = %s AND email = %s"
+            self.cursor.execute(query, (nome, email))
+            return self.cursor.fetchone()
+        except mysql.connector.Error as e:
+            raise Exception(f"Erro ao verificar login: {e}")
 
     def fechar_conexao(self):
         if self.cursor:

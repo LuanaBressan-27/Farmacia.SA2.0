@@ -22,7 +22,7 @@ class FuncionarioADMApp:
         self.root.config(menu=menu_bar)
 
     def criar_widgets(self):
-        campos = ["ID", "Nome", "CPF", "Email", "Telefone", "Função", "Qtd Vendas", "Salário", "Início Contrato"]
+        campos = ["ID", "Nome", "CPF", "Email", "Telefone", "Função", "Qtd Vendas", "Salario", "Início_Contrato"]
         self.entries = {}
         for i, campo in enumerate(campos):
             tk.Label(self.root, text=campo + ":", bg="#e6f2ff").grid(row=i, column=0, padx=10, pady=5, sticky="e")
@@ -75,7 +75,7 @@ class FuncionarioADMApp:
             lista = self.db.listar_funcionarios()
             self.text_area.delete(1.0, tk.END)
             for f in lista:
-                self.text_area.insert(tk.END, f"ID: {f[0]} | Nome: {f[1]} | CPF: {f[2]} | Email: {f[3]} | Telefone: {f[4]} | Função: {f[5]} | Vendas: {f[6]} | Salário: {f[7]} | Início: {f[8]}\n")
+                self.text_area.insert(tk.END, f"ID: {f[0]} | Nome: {f[1]} | CPF: {f[2]} | Email: {f[3]} | Telefone: {f[4]} | Função: {f[5]} | Vendas: {f[6]} | Salario: {f[7]} | Início: {f[8]}\n")
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
