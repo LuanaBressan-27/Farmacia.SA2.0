@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dumpk,m
+-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/03/2025 às 23:43
+-- Tempo de geração: 14/05/2025 às 02:10
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `farmacia_sa2`
+-- Banco de dados: `farmacia_sa2.0`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,18 @@ CREATE TABLE `adm` (
   `nome` text DEFAULT NULL,
   `email` text DEFAULT NULL,
   `CPF` text DEFAULT NULL,
+  `senha` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `idcliente` int(11) NOT NULL,
+  `nome` text DEFAULT NULL,
   `senha` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -62,13 +74,13 @@ CREATE TABLE `fornecedor` (
 CREATE TABLE `funcionario` (
   `idfuncionario` int(11) NOT NULL,
   `nome` text DEFAULT NULL,
+  `cpf` text DEFAULT NULL,
   `email` text DEFAULT NULL,
-  `data_de_nascimento` text DEFAULT NULL,
-  `data_de_contrato` text DEFAULT NULL,
   `telefone` text DEFAULT NULL,
-  `cidade` text DEFAULT NULL,
-  `estado` text DEFAULT NULL,
-  `bairro` text DEFAULT NULL
+  `funcao` text DEFAULT NULL,
+  `quantidade_vendas` text DEFAULT NULL,
+  `salario` text DEFAULT NULL,
+  `inicio_contrato` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -79,25 +91,14 @@ CREATE TABLE `funcionario` (
 
 CREATE TABLE `produto` (
   `idproduto` int(11) NOT NULL,
-  `produto` text DEFAULT NULL,
-  `valor` text DEFAULT NULL,
+  `nome_produto` text DEFAULT NULL,
+  `tipo` text DEFAULT NULL,
+  `quantidade_enviada` text DEFAULT NULL,
+  `tempo_de_validade` text DEFAULT NULL,
+  `data_de_fabricacao` text DEFAULT NULL,
+  `lote` text DEFAULT NULL,
   `fornecedor` text DEFAULT NULL,
-  `descricao` text DEFAULT NULL,
-  `validade` text DEFAULT NULL,
-  `quantidade` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `usuario`
---
-
-CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL,
-  `nome` text DEFAULT NULL,
-  `email` text DEFAULT NULL,
-  `senha` text DEFAULT NULL
+  `quantidade_em_estoque` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -109,6 +110,12 @@ CREATE TABLE `usuario` (
 --
 ALTER TABLE `adm`
   ADD PRIMARY KEY (`idADM`);
+
+--
+-- Índices de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`idcliente`);
 
 --
 -- Índices de tabela `fornecedor`
@@ -129,12 +136,6 @@ ALTER TABLE `produto`
   ADD PRIMARY KEY (`idproduto`);
 
 --
--- Índices de tabela `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`idusuario`);
-
---
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -143,6 +144,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `adm`
   MODIFY `idADM` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedor`
@@ -161,12 +168,6 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `produto`
   MODIFY `idproduto` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
