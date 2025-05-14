@@ -41,7 +41,11 @@ tk.Label(janela, text="Senha:", bg="#e6f2ff").pack()
 senha_entry = ttk.Entry(janela, width=30, show="*")
 senha_entry.pack(pady=5)
 
-ttk.Button(janela, text="Login", command=login).pack(pady=20)
+ttk.Button(janela, text="Login", command=login).pack(pady=10)
+def retornar():
+    janela.destroy()
+    import Principal_login
+ttk.Button(janela, text="Voltar",command=retornar).pack(pady=1)
 
 janela.mainloop()
 

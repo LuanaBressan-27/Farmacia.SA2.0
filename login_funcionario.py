@@ -40,6 +40,10 @@ tk.Label(janela, text="Email:", bg="#e6f2ff").pack()
 email_entry = ttk.Entry(janela, width=30)
 email_entry.pack(pady=5)
 
-ttk.Button(janela, text="Login", command=login).pack(pady=20)
+ttk.Button(janela, text="Login", command=login).pack(pady=10)
+def retornar():
+    janela.destroy()
+    import Principal_login
+ttk.Button(janela, text="Voltar",command=retornar).pack(pady=1)
 
 janela.mainloop()

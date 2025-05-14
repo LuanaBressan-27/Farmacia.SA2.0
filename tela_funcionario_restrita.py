@@ -4,7 +4,6 @@ from crud_funcionarios import Database as DBFunc
 from crud_clientes import Database as DBCliente
 from crud_produtos import read_products
 from crud_fornecedores import read_suppliers
-
 class FuncionarioRestritoApp:
     def __init__(self, root):
         self.root = root
@@ -13,6 +12,7 @@ class FuncionarioRestritoApp:
         self.root.configure(background="#e6f2ff")
         self.criar_menu()
         self.criar_widgets()
+        tk.Button(root, text="Voltar",command=retornar).pack(pady=10)
 
     def criar_menu(self):
         menu_bar = Menu(self.root)
@@ -54,6 +54,9 @@ class FuncionarioRestritoApp:
                 self.text_area.insert(tk.END, f"ID: {c[0]} | Nome: {c[1]}\n")
         except Exception as e:
             messagebox.showerror("Erro", str(e))
+def retornar():
+    root.destroy()
+    import menu_funcionario
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -1,15 +1,17 @@
 import tkinter as tk
 from tkinter import ttk
-import subprocess
 
 def abrir_login_adm():
-    subprocess.Popen(["python", "login_adm.py"])
-
+    root.destroy()
+    import login_adm
+    
 def abrir_login_funcionario():
-    subprocess.Popen(["python", "login_funcionario.py"])
+    root.destroy()
+    import login_funcionario
 
 def abrir_login_cliente():
-    subprocess.Popen(["python", "login_cliente.py"])
+    root.destroy()
+    import login_cliente
 
 root = tk.Tk()
 root.title("Login - Sistema de Farmácia")
