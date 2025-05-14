@@ -15,7 +15,11 @@ def login():
         return
 
     db = Database()
-    db.connect()
+    try:
+        db.connect()
+    except AttributeError:
+        messagebox.showerror("Erro", "Método 'connect' não encontrado na classe 'Database'")
+        return
 
     if db.conn:
         try:

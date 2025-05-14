@@ -12,19 +12,26 @@ class Database:
         # Inicializa o banco de dados e cria a tabela, se não existir
         self.initialize_database()
 
-    def get_connection(self):
+    def connect(self):
         # Criar uma conexão com o banco de dados
         try:
-            connection = mysql.connector.connect(
+            self.conn = mysql.connector.connect(
                 host=self.MYSQL_HOST,
                 user=self.MYSQL_USER,
                 password=self.MYSQL_PASSWORD,
                 database=self.MYSQL_DATABASE
             )
-            return connection
+            self.cursor = self.conn.cursor()
         except Error as e:
             print(f"Erro ao conectar ao banco de dados: {e}")
             raise
+
+    def disconnect(self):
+        # Fechar a conexão com o banco de dados
+        if self.cursor:
+            self.cursor.close()
+        if self.conn:
+            self.conn.close()
 
     def initialize_database(self):
         try:
