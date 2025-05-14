@@ -22,8 +22,8 @@ class ProdutoADMApp:
 
     def criar_widgets(self):
         labels = [
-            "ID", "Nome do Produto", "Tipo", "Quantidade Enviada", "Tempo de Validade",
-            "Data de Fabricação", "Lote", "Fornecedor", "Quantidade em Estoque"
+            "ID", "Nome_Produto", "Tipo", "Quantidade Enviada", "Tempo de Validade",
+            "Data de Fabricaçao", "Lote", "Fornecedor", "Quantidade em Estoque"
         ]
         self.entries = {}
 
