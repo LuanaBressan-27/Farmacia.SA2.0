@@ -31,7 +31,8 @@ class ProdutoADMApp:
             tk.Label(self.root, text=label + ":", bg="#e6f2ff").grid(row=i, column=0, padx=10, pady=5, sticky="e")
             entry = tk.Entry(self.root, width=40)
             entry.grid(row=i, column=1, padx=10, pady=5)
-            self.entries[label.lower().replace(" ", "_").replace("ç", "c")] = entry
+            chave = label.lower().replace(" ", "_").replace("ç", "c")
+            self.entries[chave] = entry
 
         tk.Button(self.root, text="Adicionar", command=self.adicionar).grid(row=9, column=0, pady=10)
         tk.Button(self.root, text="Atualizar", command=self.atualizar).grid(row=9, column=1, pady=10)
@@ -43,7 +44,7 @@ class ProdutoADMApp:
 
     def adicionar(self):
         try:
-            dados = self.obter_dados(True)
+            dados = self.obter_dados(sem_id=True)
             add_product(**dados)
             self.limpar()
             messagebox.showinfo("Sucesso", "Produto adicionado com sucesso!")
@@ -55,7 +56,7 @@ class ProdutoADMApp:
             id_produto = self.entries["id"].get()
             if not id_produto:
                 raise ValueError("ID obrigatório para atualizar.")
-            dados = self.obter_dados(True)
+            dados = self.obter_dados(sem_id=True)
             update_product(id_produto, **dados)
             self.limpar()
             messagebox.showinfo("Sucesso", "Produto atualizado com sucesso!")
