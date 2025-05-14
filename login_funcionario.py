@@ -1,20 +1,45 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
+from crud_funcionarios import Database
 import subprocess
 
-jan_botao = tk.Tk()
-jan_botao.title("Menu Principal - Funcionário")
-jan_botao.geometry("600x300")
-jan_botao.configure(background="#e6f2ff")
-jan_botao.resizable(width=False, height=False)
+def abrir_menu_funcionario():
+    subprocess.Popen(["python", "menu_funcionario.py"])
 
-titulo = tk.Label(jan_botao, text="Menu Principal - Funcionário", font=("Century Gothic", 20), bg="#cce6ff", fg="black")
-titulo.pack(pady=20)
+def login():
+    nome = nome_entry.get()
+    email = email_entry.get()
 
-def abrir_interface():
-    subprocess.Popen(["python", "tela_funcionario_restrita.py"])
+    if not nome or not email:
+        messagebox.showwarning("Campos obrigatórios", "Preencha todos os campos")
+        return
 
-ttk.Button(jan_botao, text="Abrir Sistema", width=25, command=abrir_interface).pack(pady=20)
+    try:
+        db = Database()
+        resultado = db.verificar_login(nome, email)
+        if resultado:
+            messagebox.showinfo("Sucesso", "Login Funcionário realizado com sucesso!")
+            janela.destroy()
+            abrir_menu_funcionario()
+        else:
+            messagebox.showerror("Erro", "Nome ou e-mail incorretos")
+    except Exception as e:
+        messagebox.showerror("Erro", str(e))
 
-jan_botao.mainloop()
+janela = tk.Tk()
+janela.title("Login Funcionário")
+janela.geometry("400x250")
+janela.configure(bg="#e6f2ff")
 
+tk.Label(janela, text="Login Funcionário", font=("Century Gothic", 20), bg="#cce6ff").pack(pady=10)
+tk.Label(janela, text="Nome:", bg="#e6f2ff").pack()
+nome_entry = ttk.Entry(janela, width=30)
+nome_entry.pack(pady=5)
+
+tk.Label(janela, text="Email:", bg="#e6f2ff").pack()
+email_entry = ttk.Entry(janela, width=30)
+email_entry.pack(pady=5)
+
+ttk.Button(janela, text="Login", command=login).pack(pady=20)
+
+janela.mainloop()
