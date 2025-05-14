@@ -6,6 +6,9 @@ janela = tk.Tk()
 janela.title("Menu ADM")
 janela.geometry("400x300")
 janela.configure(bg="#e6f2ff")
+def retornar():
+    janela.destroy()
+    import login_adm
 
 def abrir_produto(): subprocess.Popen(["python", "tela_produto_adm.py"])
 def abrir_funcionario(): subprocess.Popen(["python", "tela_funcionario_adm.py"])
