@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import mysql.connector
 import subprocess
+from DataBase_adm import Database
 
 def abrir_menu_adm():
     subprocess.Popen(["python", "menu_adm.py"])
@@ -14,31 +14,26 @@ def login():
         messagebox.showwarning("Campos obrigatórios", "Preencha todos os campos")
         return
 
-    try:
-        conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="farmacia_sa2_0"
-        )
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM adm WHERE nome = %s AND senha = %s", (nome, senha))
-        resultado = cursor.fetchone()
+    db = Database()
+    db.connect()
 
-        if resultado:
-            messagebox.showinfo("Sucesso", "Login ADM realizado com sucesso!")
-            janela.destroy()
-            abrir_menu_adm()
-        else:
-            messagebox.showerror("Erro", "Usuário ou senha incorretos")
+    if db.conn:
+        try:
+            db.cursor.execute("SELECT * FROM adm WHERE nome = %s AND senha = %s", (nome, senha))
+            resultado = db.cursor.fetchone()
 
-    except Exception as e:
-        messagebox.showerror("Erro de banco", str(e))
+            if resultado:
+                messagebox.showinfo("Sucesso", "Login ADM realizado com sucesso!")
+                janela.destroy()
+                abrir_menu_adm()
+            else:
+                messagebox.showerror("Erro", "Usuário ou senha incorretos")
 
-    finally:
-        if conn.is_connected():
-            cursor.close()
-            conn.close()
+        except Exception as e:
+            messagebox.showerror("Erro de banco", str(e))
+
+        finally:
+            db.disconnect()
 
 janela = tk.Tk()
 janela.title("Login ADM")
@@ -57,4 +52,3 @@ senha_entry.pack(pady=5)
 ttk.Button(janela, text="Login", command=login).pack(pady=20)
 
 janela.mainloop()
-
