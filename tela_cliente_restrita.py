@@ -37,7 +37,7 @@ class ClienteRestritoApp:
             messagebox.showerror("Erro", str(e))
 def retornar():
     root.withdraw()
-    subprocess.Popen(["python", "menu_funcionario.py"])
+    subprocess.Popen(["python", "menu_cliente.py"])
 if __name__ == "__main__":
     root = tk.Tk()
     app = ClienteRestritoApp(root)
