@@ -104,7 +104,7 @@ class ProdutoADMApp:
         for entry in self.entries.values():
             entry.delete(0, tk.END)
 def retornar():
-    root.destroy()
+    root.withdraw()
     import menu_adm
 
 if __name__ == "__main__":

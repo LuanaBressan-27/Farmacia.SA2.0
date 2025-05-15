@@ -33,7 +33,7 @@ class ClienteRestritoApp:
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 def retornar():
-    root.destroy()
+    root.withdraw()
     import menu_funcionario
 if __name__ == "__main__":
     root = tk.Tk()

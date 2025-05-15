@@ -2,15 +2,15 @@ import tkinter as tk
 from tkinter import ttk
 
 def abrir_login_adm():
-    root.destroy()
+    root.withdraw()
     import login_adm
     
 def abrir_login_funcionario():
-    root.destroy()
+    root.withdraw()
     import login_funcionario
 
 def abrir_login_cliente():
-    root.destroy()
+    root.withdraw()
     import login_cliente
 
 root = tk.Tk()
