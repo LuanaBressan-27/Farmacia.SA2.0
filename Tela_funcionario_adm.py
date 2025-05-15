@@ -93,7 +93,7 @@ class FuncionarioADMApp:
         for v in self.entries.values():
             v.delete(0, tk.END)
 def retornar():
-    root.withdraw()
+    root.delete()
     import menu_adm
 if __name__ == '__main__':
     root = tk.Tk()

@@ -56,7 +56,7 @@ senha_entry.pack(pady=5)
 
 ttk.Button(janela, text="Login", command=login).pack(pady=10)
 def retornar():
-    janela.withdraw()
+    janela.delete()
     import Principal_login
 ttk.Button(janela, text="Voltar",command=retornar).pack(pady=1)
 

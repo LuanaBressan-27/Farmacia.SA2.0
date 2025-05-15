@@ -56,7 +56,7 @@ class FuncionarioRestritoApp:
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 def retornar():
-    root.withdraw()
+    root.delete()
     import menu_funcionario
 
 if __name__ == "__main__":
