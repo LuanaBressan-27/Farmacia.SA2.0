@@ -11,7 +11,9 @@ def retornar():
     janela.destroy()
     import login_cliente
 
-def abrir_interface(): subprocess.Popen(["python", "tela_cliente_restrita.py"])
+def abrir_interface(): 
+    janela.destroy()
+    subprocess.Popen(["python", "tela_cliente_restrita.py"])
 ttk.Button(janela, text="Visualizar Produtos", command=abrir_interface).pack(pady=50)
 ttk.Button(janela, text="Voltar",command=retornar).pack(pady=10)
 
