@@ -11,10 +11,18 @@ def retornar():
     janela.destroy()
     import login_adm
 
-def abrir_produto(): subprocess.Popen(["python", "tela_produto_adm.py"])
-def abrir_funcionario(): subprocess.Popen(["python", "tela_funcionario_adm.py"])
-def abrir_fornecedor(): subprocess.Popen(["python", "tela_fornecedor_adm.py"])
-def abrir_cliente(): subprocess.Popen(["python", "tela_cliente_adm.py"])
+def abrir_produto(): 
+    janela.destroy()
+    subprocess.Popen(["python", "tela_produto_adm.py"])
+def abrir_funcionario(): 
+    janela.destroy()
+    subprocess.Popen(["python", "tela_funcionario_adm.py"])
+def abrir_fornecedor(): 
+    janela.destroy()
+    subprocess.Popen(["python", "tela_fornecedor_adm.py"])
+def abrir_cliente(): 
+    janela.destroy()
+    subprocess.Popen(["python", "tela_cliente_adm.py"])
 
 ttk.Button(janela, text="Produtos", command=abrir_produto).pack(pady=10)
 ttk.Button(janela, text="Funcionários", command=abrir_funcionario).pack(pady=10)
