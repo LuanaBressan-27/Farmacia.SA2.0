@@ -1,11 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
-from crud_stuff_fornecedores import add_supplier, read_suppliers
+from crud_fornecedores import add_supplier, read_suppliers
 
 class TelaFornecedor:
     def __init__(self, root):
         self.root = root
         self.root.title("Gerenciamento de Fornecedores")
+        self.root.geometry("800x600")
+        self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
         self.create_widgets()
 
     def create_widgets(self):
@@ -32,6 +35,7 @@ class TelaFornecedor:
         # Botões
         tk.Button(button_frame, text="Adicionar Fornecedor", command=self.add_supplier).grid(row=0, column=0, padx=5)
         tk.Button(button_frame, text="Listar Fornecedores", command=self.list_suppliers).grid(row=0, column=1, padx=5)
+        tk.Button(root, text="Voltar",command=retornar).grid(row=1,column=0)
 
         # Área de texto para exibir fornecedores
         self.text_area = tk.Text(text_frame, height=10, width=80)
@@ -69,7 +73,9 @@ class TelaFornecedor:
     def clear_entries(self):
         for entry in self.entries.values():
             entry.delete(0, tk.END)
-
+def retornar():
+    root.destroy()
+    import menu_funcionario
 if __name__ == "__main__":
     root = tk.Tk()
     app = TelaFornecedor(root)

@@ -8,6 +8,7 @@ class FuncionarioADMApp:
         self.root.title("Gestão de Funcionários - ADM")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
         self.db = Database()
         self.criar_menu()
         self.criar_widgets()
@@ -34,8 +35,9 @@ class FuncionarioADMApp:
         ttk.Button(self.root, text="Alterar", command=self.alterar).grid(row=9, column=1)
         ttk.Button(self.root, text="Excluir", command=self.excluir).grid(row=9, column=2)
         ttk.Button(self.root, text="Listar", command=self.listar).grid(row=10, column=0, columnspan=3)
+        ttk.Button(self.root, text="Voltar",command=retornar).grid(row=10,column=0)
 
-        self.text_area = tk.Text(self.root, height=10, width=90)
+        self.text_area = tk.Text(self.root, height=10, width=60)
         self.text_area.grid(row=11, column=0, columnspan=3, padx=10, pady=10)
 
     def cadastrar(self):
@@ -90,7 +92,9 @@ class FuncionarioADMApp:
     def limpar(self):
         for v in self.entries.values():
             v.delete(0, tk.END)
-
+def retornar():
+    root.destroy()
+    import menu_adm
 if __name__ == '__main__':
     root = tk.Tk()
     app = FuncionarioADMApp(root)

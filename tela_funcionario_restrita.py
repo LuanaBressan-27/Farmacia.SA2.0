@@ -10,6 +10,7 @@ class FuncionarioRestritoApp:
         self.root.title("Acesso Funcionário - Consulta")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
         self.criar_menu()
         self.criar_widgets()
         tk.Button(root, text="Voltar",command=retornar).pack(pady=10)

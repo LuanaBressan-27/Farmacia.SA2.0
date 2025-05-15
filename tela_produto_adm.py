@@ -8,6 +8,7 @@ class ProdutoADMApp:
         self.root.title("Gestão de Produtos - ADM")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
         self.criar_menu()
         self.criar_widgets()
 
@@ -38,6 +39,7 @@ class ProdutoADMApp:
         tk.Button(self.root, text="Atualizar", command=self.atualizar).grid(row=9, column=1, pady=10)
         tk.Button(self.root, text="Excluir", command=self.excluir).grid(row=9, column=2, pady=10)
         tk.Button(self.root, text="Listar Produtos", command=self.listar).grid(row=10, column=0, columnspan=3, pady=10)
+        tk.Button(root, text="Voltar",command=retornar).grid(row=10,column=0)
 
         self.text_area = tk.Text(self.root, height=15, width=90)
         self.text_area.grid(row=11, column=0, columnspan=3, padx=10, pady=10)
@@ -102,6 +104,9 @@ class ProdutoADMApp:
     def limpar(self):
         for entry in self.entries.values():
             entry.delete(0, tk.END)
+def retornar():
+    root.destroy()
+    import menu_adm
 
 if __name__ == "__main__":
     root = tk.Tk()

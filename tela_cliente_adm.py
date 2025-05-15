@@ -8,6 +8,7 @@ class ClienteADMApp:
         self.root.title("Gestão de Clientes - ADM")
         self.root.geometry("600x500")
         self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
         self.db = Database()
 
         self.criar_menu()
@@ -35,12 +36,13 @@ class ClienteADMApp:
             self.entries[label.lower().split()[0]] = entry
 
         ttk.Button(self.root, text="Cadastrar", command=self.cadastrar).grid(row=3, column=0)
-        ttk.Button(self.root, text="Alterar", command=self.alterar).grid(row=3, column=1)
+        ttk.Button(self.root, text="Alterar", command=self.alterar).grid(row=3, column=2)
         ttk.Button(self.root, text="Excluir", command=self.excluir).grid(row=4, column=0)
-        ttk.Button(self.root, text="Listar", command=self.listar).grid(row=4, column=1)
+        ttk.Button(self.root, text="Listar", command=self.listar).grid(row=4, column=2)
+        ttk.Button(self.root, text="Voltar",command=retornar).grid(row=4,column=1)
 
-        self.text_area = tk.Text(self.root, height=10, width=70)
-        self.text_area.grid(row=5, column=0, columnspan=2, padx=10, pady=10)
+        self.text_area = tk.Text(self.root, height=10, width=60)
+        self.text_area.grid(row=5, column=0, columnspan=3, padx=10, pady=10)
 
     def cadastrar(self):
         try:
@@ -90,7 +92,9 @@ class ClienteADMApp:
     def limpar(self):
         for entry in self.entries.values():
             entry.delete(0, tk.END)
-
+def retornar():
+    root.destroy()
+    import menu_adm
 if __name__ == '__main__':
     root = tk.Tk()
     app = ClienteADMApp(root)

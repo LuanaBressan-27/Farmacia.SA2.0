@@ -8,6 +8,7 @@ class FornecedorADMApp:
         self.root.title("Gestão de Fornecedores - ADM")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
 
         self.criar_menu()
         self.criar_widgets()
@@ -35,6 +36,7 @@ class FornecedorADMApp:
         tk.Button(self.root, text="Atualizar", command=self.atualizar).grid(row=8, column=1)
         tk.Button(self.root, text="Excluir", command=self.excluir).grid(row=8, column=2)
         tk.Button(self.root, text="Listar", command=self.listar).grid(row=9, column=0, columnspan=3)
+        tk.Button(self.root, text="Voltar",command=retornar).grid(row=8,column=3)
 
         self.text_area = tk.Text(self.root, height=15, width=90)
         self.text_area.grid(row=10, column=0, columnspan=3, padx=10, pady=10)
@@ -89,7 +91,9 @@ class FornecedorADMApp:
     def limpar(self):
         for entry in self.entries.values():
             entry.delete(0, tk.END)
-
+def retornar():
+    root.destroy()
+    import menu_adm
 if __name__ == '__main__':
     root = tk.Tk()
     app = FornecedorADMApp(root)

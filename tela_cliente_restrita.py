@@ -8,6 +8,7 @@ class ClienteRestritoApp:
         self.root.title("Acesso Cliente - Produtos Disponíveis")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
+        root.resizable(width=False, height=False)
         self.criar_menu()
         self.criar_widgets()
 
@@ -21,6 +22,7 @@ class ClienteRestritoApp:
     def criar_widgets(self):
         self.text_area = tk.Text(self.root, height=30, width=100)
         self.text_area.pack(padx=10, pady=10)
+        tk.Button(root, text="Voltar",command=retornar).pack(padx=10)
 
     def mostrar_produtos(self):
         try:
@@ -30,7 +32,9 @@ class ClienteRestritoApp:
                 self.text_area.insert(tk.END, f"ID: {p[0]} | Nome: {p[1]} | Tipo: {p[2]} | Quantidade: {p[3]} | Validade: {p[4]} | Fabricação: {p[5]} | Lote: {p[6]} | Fornecedor: {p[7]} | Estoque: {p[8]}\n")
         except Exception as e:
             messagebox.showerror("Erro", str(e))
-
+def retornar():
+    root.destroy()
+    import menu_funcionario
 if __name__ == "__main__":
     root = tk.Tk()
     app = ClienteRestritoApp(root)

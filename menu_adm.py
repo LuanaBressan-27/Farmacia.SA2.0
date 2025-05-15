@@ -4,8 +4,9 @@ import subprocess
 
 janela = tk.Tk()
 janela.title("Menu ADM")
-janela.geometry("400x300")
+janela.geometry("400x250")
 janela.configure(bg="#e6f2ff")
+janela.resizable(width=False, height=False)
 def retornar():
     janela.destroy()
     import login_adm
@@ -19,5 +20,6 @@ ttk.Button(janela, text="Produtos", command=abrir_produto).pack(pady=10)
 ttk.Button(janela, text="Funcionários", command=abrir_funcionario).pack(pady=10)
 ttk.Button(janela, text="Fornecedores", command=abrir_fornecedor).pack(pady=10)
 ttk.Button(janela, text="Clientes", command=abrir_cliente).pack(pady=10)
+ttk.Button(janela, text="Voltar",command=retornar).pack(pady=10)
 
 janela.mainloop()

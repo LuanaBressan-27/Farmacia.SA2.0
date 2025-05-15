@@ -31,6 +31,7 @@ janela = tk.Tk()
 janela.title("Login Cliente")
 janela.geometry("400x250")
 janela.configure(bg="#e6f2ff")
+janela.resizable(width=False, height=False)
 
 tk.Label(janela, text="Login Cliente", font=("Century Gothic", 20), bg="#cce6ff").pack(pady=10)
 tk.Label(janela, text="Nome:", bg="#e6f2ff").pack()
