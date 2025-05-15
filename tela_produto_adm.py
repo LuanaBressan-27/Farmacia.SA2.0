@@ -18,7 +18,6 @@ class ProdutoADMApp:
         menu.add_command(label="Funcionários")
         menu.add_command(label="Fornecedores")
         menu.add_command(label="Clientes")
-        menu_bar.add_cascade(label="Menu", menu=menu)
         self.root.config(menu=menu_bar)
 
     def criar_widgets(self):
