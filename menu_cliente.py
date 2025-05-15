@@ -8,7 +8,7 @@ janela.geometry("300x200")
 janela.configure(bg="#e6f2ff")
 janela.resizable(width=False, height=False)
 def retornar():
-    janela.delete()
+    janela.destroy()
     import login_cliente
 
 def abrir_interface(): 

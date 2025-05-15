@@ -8,20 +8,20 @@ janela.geometry("400x250")
 janela.configure(bg="#e6f2ff")
 janela.resizable(width=False, height=False)
 def retornar():
-    janela.delete()
+    janela.destroy()
     import login_adm
 
 def abrir_produto(): 
-    janela.delete()
+    janela.destroy()
     subprocess.Popen(["python", "tela_produto_adm.py"])
 def abrir_funcionario(): 
-    janela.delete()
+    janela.destroy()
     subprocess.Popen(["python", "tela_funcionario_adm.py"])
 def abrir_fornecedor(): 
-    janela.delete()
+    janela.destroy()
     subprocess.Popen(["python", "tela_fornecedor_adm.py"])
 def abrir_cliente(): 
-    janela.delete()
+    janela.destroy()
     subprocess.Popen(["python", "tela_cliente_adm.py"])
 
 ttk.Button(janela, text="Produtos", command=abrir_produto).pack(pady=10)

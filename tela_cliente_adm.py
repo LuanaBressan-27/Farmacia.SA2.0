@@ -93,7 +93,7 @@ class ClienteADMApp:
         for entry in self.entries.values():
             entry.delete(0, tk.END)
 def retornar():
-    root.delete()
+    root.destroy()
     import menu_adm
 if __name__ == '__main__':
     root = tk.Tk()
