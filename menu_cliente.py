@@ -9,11 +9,9 @@ janela.configure(bg="#e6f2ff")
 janela.resizable(width=False, height=False)
 def retornar():
     janela.withdraw()
-    import login_cliente
+    subprocess.Popen(["python", "login_cliente.py"])
 
-def abrir_interface(): 
-    janela.withdraw()
-    subprocess.Popen(["python", "tela_cliente_restrita.py"])
+def abrir_interface(): subprocess.Popen(["python", "tela_cliente_restrita.py"])
 ttk.Button(janela, text="Visualizar Produtos", command=abrir_interface).pack(pady=50)
 ttk.Button(janela, text="Voltar",command=retornar).pack(pady=10)
 

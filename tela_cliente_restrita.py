@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import Menu, messagebox
 from crud_produtos import read_products
+import subprocess
 
 class ClienteRestritoApp:
     def __init__(self, root):
         self.root = root
+        if root == root.withdraw:
+            root.deiconify
         self.root.title("Acesso Cliente - Produtos Disponíveis")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
@@ -34,7 +37,7 @@ class ClienteRestritoApp:
             messagebox.showerror("Erro", str(e))
 def retornar():
     root.withdraw()
-    import menu_funcionario
+    subprocess.Popen(["python", "menu_funcionario.py"])
 if __name__ == "__main__":
     root = tk.Tk()
     app = ClienteRestritoApp(root)

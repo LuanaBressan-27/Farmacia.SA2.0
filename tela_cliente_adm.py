@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, Menu
 from crud_clientes import Database
+import subprocess
 
 class ClienteADMApp:
     def __init__(self, root):
         self.root = root
+        if root == root.withdraw:
+            root.deiconify
         self.root.title("Gestão de Clientes - ADM")
         self.root.geometry("600x500")
         self.root.configure(background="#e6f2ff")
@@ -94,7 +97,7 @@ class ClienteADMApp:
             entry.delete(0, tk.END)
 def retornar():
     root.withdraw()
-    import menu_adm
+    subprocess.Popen(["python", "menu_adm.py"])
 if __name__ == '__main__':
     root = tk.Tk()
     app = ClienteADMApp(root)

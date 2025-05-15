@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 from crud_fornecedores import add_supplier, read_suppliers
+import subprocess
 
 class TelaFornecedor:
     def __init__(self, root):
         self.root = root
+        if root == root.withdraw:
+            root.deiconify
         self.root.title("Gerenciamento de Fornecedores")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
@@ -75,7 +78,7 @@ class TelaFornecedor:
             entry.delete(0, tk.END)
 def retornar():
     root.withdraw()
-    import menu_funcionario
+    subprocess.Popen(["python", "menu_funcionario.py"])
 if __name__ == "__main__":
     root = tk.Tk()
     app = TelaFornecedor(root)

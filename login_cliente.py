@@ -20,7 +20,7 @@ def login():
         for c in clientes:
             if c[1] == nome and c[2] == senha:
                 messagebox.showinfo("Sucesso", "Login Cliente realizado com sucesso!")
-                janela.destroy()
+                janela.withdraw()
                 abrir_menu_cliente()
                 return
         messagebox.showerror("Erro", "Nome ou senha incorretos")
@@ -45,7 +45,7 @@ senha_entry.pack(pady=5)
 ttk.Button(janela, text="Login", command=login).pack(pady=10)
 def retornar():
     janela.withdraw()
-    import Principal_login
+    subprocess.Popen(["python", "Principal_login.py"])
 ttk.Button(janela, text="Voltar",command=retornar).pack(pady=1)
 
 janela.mainloop()

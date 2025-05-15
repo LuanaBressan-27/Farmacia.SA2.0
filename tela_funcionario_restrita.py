@@ -4,9 +4,12 @@ from crud_funcionarios import Database as DBFunc
 from crud_clientes import Database as DBCliente
 from crud_produtos import read_products
 from crud_fornecedores import read_suppliers
+import subprocess
 class FuncionarioRestritoApp:
     def __init__(self, root):
         self.root = root
+        if root == root.withdraw:
+            root.deiconify
         self.root.title("Acesso Funcionário - Consulta")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
@@ -57,7 +60,7 @@ class FuncionarioRestritoApp:
             messagebox.showerror("Erro", str(e))
 def retornar():
     root.withdraw()
-    import menu_funcionario
+    subprocess.Popen(["python", "menu_funcionario.py"])
 
 if __name__ == "__main__":
     root = tk.Tk()

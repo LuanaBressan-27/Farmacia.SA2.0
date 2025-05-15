@@ -1,19 +1,24 @@
 import tkinter as tk
 from tkinter import ttk
+import subprocess
 
 def abrir_login_adm():
     root.withdraw()
-    import login_adm
+    subprocess.Popen(["python", "login_adm.py"])
     
 def abrir_login_funcionario():
     root.withdraw()
-    import login_funcionario
+    subprocess.Popen(["python", "login_funcionario.py"])
 
 def abrir_login_cliente():
     root.withdraw()
-    import login_cliente
+    subprocess.Popen(["python", "login_cliente.py"])
 
+def reabrir():
+    root.deiconify
 root = tk.Tk()
+if root == root.withdraw:
+    root.deiconify
 root.title("Login - Sistema de Farmácia")
 root.geometry("400x300")
 root.configure(bg="#e6f2ff")

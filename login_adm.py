@@ -28,7 +28,7 @@ def login():
 
             if resultado:
                 messagebox.showinfo("Sucesso", "Login ADM realizado com sucesso!")
-                janela.destroy()
+                janela.withdraw()
                 abrir_menu_adm()
             else:
                 messagebox.showerror("Erro", "Usuário ou senha incorretos")
@@ -57,7 +57,7 @@ senha_entry.pack(pady=5)
 ttk.Button(janela, text="Login", command=login).pack(pady=10)
 def retornar():
     janela.withdraw()
-    import Principal_login
+    subprocess.Popen(["python", "Principal_login.py"])
 ttk.Button(janela, text="Voltar",command=retornar).pack(pady=1)
 
 janela.mainloop()

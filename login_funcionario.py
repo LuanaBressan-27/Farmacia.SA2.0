@@ -3,6 +3,9 @@ from tkinter import ttk, messagebox
 from crud_funcionarios import Database
 import subprocess
 
+def reabrir():
+    janela.deiconify
+
 def abrir_menu_funcionario():
     subprocess.Popen(["python", "menu_funcionario.py"])
 
@@ -19,7 +22,7 @@ def login():
         resultado = db.verificar_login(nome, email)
         if resultado:
             messagebox.showinfo("Sucesso", "Login Funcionário realizado com sucesso!")
-            janela.destroy()
+            janela.withdraw()
             abrir_menu_funcionario()
         else:
             messagebox.showerror("Erro", "Nome ou e-mail incorretos")
@@ -42,9 +45,9 @@ email_entry = ttk.Entry(janela, width=30)
 email_entry.pack(pady=5)
 
 ttk.Button(janela, text="Login", command=login).pack(pady=10)
-def retornar():
+def voltar():
     janela.withdraw()
-    import Principal_login
-ttk.Button(janela, text="Voltar",command=retornar).pack(pady=1)
+    subprocess.Popen(["python", "Principal_login.py"])
+ttk.Button(janela, text="Voltar",command=voltar).pack(pady=1)
 
 janela.mainloop()
