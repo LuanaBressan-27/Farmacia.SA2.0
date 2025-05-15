@@ -20,6 +20,6 @@ ttk.Button(janela, text="Produtos", command=abrir_produto).pack(pady=10)
 ttk.Button(janela, text="Funcionários", command=abrir_funcionario).pack(pady=10)
 ttk.Button(janela, text="Fornecedores", command=abrir_fornecedor).pack(pady=10)
 ttk.Button(janela, text="Clientes", command=abrir_cliente).pack(pady=10)
-ttk.Button(janela, text="Voltar",command=retornar).pack(pady=10)
+ttk.Button(janela, text="Desconectar",command=retornar).pack(pady=10)
 
 janela.mainloop()
