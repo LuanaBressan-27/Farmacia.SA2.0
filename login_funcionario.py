@@ -46,7 +46,7 @@ email_entry.pack(pady=5)
 
 ttk.Button(janela, text="Login", command=login).pack(pady=10)
 def voltar():
-    janela.withdraw()
+    janela.destroy()
     subprocess.Popen(["python", "Principal_login.py"])
 ttk.Button(janela, text="Voltar",command=voltar).pack(pady=1)
 
