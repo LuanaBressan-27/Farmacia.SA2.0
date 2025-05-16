@@ -26,7 +26,7 @@ class FornecedorADMApp:
         self.root.config(menu=menu_bar)
 
     def criar_widgets(self):
-        labels = ["ID", "Nome da Empresa", "Email", "Telefone", "Produto", "Transporte", "Início do Contrato", "Final do Contrato"]
+        labels = ["ID", "Nome_Empresa", "Email", "Telefone", "Produto", "Transporte", "Início_Contrato", "Final_Contrato"]
         self.entries = {}
 
         for i, label in enumerate(labels):

@@ -55,14 +55,12 @@ CREATE TABLE `cliente` (
 
 CREATE TABLE `fornecedor` (
   `idfornecedor` int(11) NOT NULL,
-  `nome` text DEFAULT NULL,
+  `nome_Empresa` text DEFAULT NULL,
   `email` text DEFAULT NULL,
   `produto` text DEFAULT NULL,
   `transporte` text DEFAULT NULL,
   `inicio_contrato` text DEFAULT NULL,
-  `final_contrato` text DEFAULT NULL,
-  `cidade` text DEFAULT NULL,
-  `estado` text DEFAULT NULL
+  `final_contrato` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
