@@ -57,6 +57,7 @@ CREATE TABLE `fornecedor` (
   `idfornecedor` int(11) NOT NULL,
   `nome_Empresa` text DEFAULT NULL,
   `email` text DEFAULT NULL,
+  `telefone` text DEFAULT NULL,
   `produto` text DEFAULT NULL,
   `transporte` text DEFAULT NULL,
   `inicio_contrato` text DEFAULT NULL,
