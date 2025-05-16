@@ -33,7 +33,7 @@ class FornecedorADMApp:
             tk.Label(self.root, text=label + ":", bg="#e6f2ff").grid(row=i, column=0, sticky="e", padx=10, pady=5)
             entry = tk.Entry(self.root, width=40)
             entry.grid(row=i, column=1, padx=10, pady=5)
-            self.entries[label.lower().replace(" ", "_").replace("ã", "a").replace("í", "i").replace("ç", "c")] = entry
+            self.entries[label.lower().replace("_", " ").replace("ã", "a").replace("í", "i").replace("ç", "c")] = entry
 
         tk.Button(self.root, text="Adicionar", command=self.adicionar).grid(row=8, column=0, pady=10)
         tk.Button(self.root, text="Atualizar", command=self.atualizar).grid(row=8, column=1)
