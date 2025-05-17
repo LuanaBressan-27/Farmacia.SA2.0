@@ -81,7 +81,7 @@ class FornecedorADMApp:
             fornecedores = read_suppliers()
             self.text_area.delete(1.0, tk.END)
             for f in fornecedores:
-                self.text_area.insert(tk.END, f"ID: {f[0]} | Empresa: {f[1]} | Email: {f[2]} | Telefone: {f[3]} | Produto: {f[4]} | Transporte: {f[5]} | Início: {f[6]} | Final: {f[7]}\n")
+                self.text_area.insert(tk.END, f"ID: {fornecedores[0]} | Empresa: {fornecedores[1]} | Email: {fornecedores[2]} | Telefone: {fornecedores[3]} | Produto: {fornecedores[4]} | Transporte: {fornecedores[5]} | Início: {fornecedores[6]} | Final: {fornecedores[7]}\n")
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
