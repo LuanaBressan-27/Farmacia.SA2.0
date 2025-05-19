@@ -6,12 +6,10 @@ import subprocess
 class FornecedorADMApp:
     def __init__(self, root):
         self.root = root
-        if root == root.withdraw:
-            root.deiconify
         self.root.title("Gestão de Fornecedores - ADM")
         self.root.geometry("800x600")
         self.root.configure(background="#e6f2ff")
-        root.resizable(width=False, height=False)
+        self.root.resizable(width=False, height=False)
 
         self.criar_menu()
         self.criar_widgets()
@@ -26,27 +24,49 @@ class FornecedorADMApp:
         self.root.config(menu=menu_bar)
 
     def criar_widgets(self):
-        labels = ["ID", "Nome_Empresa", "Email", "Telefone", "Produto", "Transporte", "Início_Contrato", "Final_Contrato"]
+        campos = [
+            ("ID", "id"),
+            ("Nome da Empresa", "nome_empresa"),
+            ("Email", "email"),
+            ("Telefone", "telefone"),
+            ("Produto", "produto"),
+            ("Transporte", "transporte"),
+            ("Início do Contrato", "inicio_contrato"),
+            ("Final do Contrato", "final_contrato")
+        ]
+
         self.entries = {}
 
-        for i, label in enumerate(labels):
-            tk.Label(self.root, text=label + ":", bg="#e6f2ff").grid(row=i, column=0, sticky="e", padx=10, pady=5)
+        for i, (label_text, field_name) in enumerate(campos):
+            tk.Label(self.root, text=label_text + ":", bg="#e6f2ff").grid(row=i, column=0, sticky="e", padx=10, pady=5)
             entry = tk.Entry(self.root, width=40)
             entry.grid(row=i, column=1, padx=10, pady=5)
-            self.entries[label.lower().replace("_", " ").replace("ã", "a").replace("í", "i").replace("ç", "c")] = entry
+            self.entries[field_name] = entry
 
         tk.Button(self.root, text="Adicionar", command=self.adicionar).grid(row=8, column=0, pady=10)
         tk.Button(self.root, text="Atualizar", command=self.atualizar).grid(row=8, column=1)
         tk.Button(self.root, text="Excluir", command=self.excluir).grid(row=8, column=2)
-        tk.Button(self.root, text="Listar", command=self.listar).grid(row=9, column=0, columnspan=3)
-        tk.Button(self.root, text="Voltar",command=retornar).grid(row=8,column=3)
+        tk.Button(self.root, text="Voltar", command=self.retornar).grid(row=8, column=3)
+        tk.Button(self.root, text="Listar", command=self.listar).grid(row=9, column=0, columnspan=4, pady=5)
 
         self.text_area = tk.Text(self.root, height=15, width=90)
-        self.text_area.grid(row=10, column=0, columnspan=3, padx=10, pady=10)
+        self.text_area.grid(row=10, column=0, columnspan=4, padx=10, pady=10)
+
+    def coletar_dados(self, sem_id=False):
+        dados = {}
+        for campo, entry in self.entries.items():
+            if sem_id and campo == "id":
+                continue
+            dados[campo] = entry.get()
+        return dados
+
+    def limpar(self):
+        for entry in self.entries.values():
+            entry.delete(0, tk.END)
 
     def adicionar(self):
         try:
-            dados = self.coletar_dados(True)
+            dados = self.coletar_dados(sem_id=True)
             add_supplier(**dados)
             self.limpar()
             messagebox.showinfo("Sucesso", "Fornecedor adicionado com sucesso!")
@@ -58,7 +78,7 @@ class FornecedorADMApp:
             idf = self.entries["id"].get()
             if not idf:
                 raise ValueError("ID obrigatório para atualizar")
-            dados = self.coletar_dados(True)
+            dados = self.coletar_dados(sem_id=True)
             update_supplier(idf, **dados)
             self.limpar()
             messagebox.showinfo("Sucesso", "Fornecedor atualizado com sucesso!")
@@ -81,22 +101,18 @@ class FornecedorADMApp:
             fornecedores = read_suppliers()
             self.text_area.delete(1.0, tk.END)
             for f in fornecedores:
-                self.text_area.insert(tk.END, f"ID: {f[0]} | Empresa: {f[1]} | Email: {f[2]} | Telefone: {f[7]} | Produto: {f[3]} | Transporte: {f[4]} | Início: {f[5]} | Final: {f[6]}\n")
+                self.text_area.insert(tk.END,
+                    f"ID: {f[0]} | Nome: {f[1]} | Email: {f[2]} | Produto: {f[7]} | Transporte: {f[3]} | "
+                    f"Início: {f[4]} | Fim: {f[5]} | Telefone: {f[6]}\n"
+                )
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
-    def coletar_dados(self, sem_id=False):
-        campos = self.entries.copy()
-        if sem_id:
-            campos.pop("id")
-        return {chave: entry.get() for chave, entry in campos.items()}
+    def retornar(self):
+        self.root.withdraw()
+        subprocess.Popen(["python", "menu_adm.py"])
 
-    def limpar(self):
-        for entry in self.entries.values():
-            entry.delete(0, tk.END)
-def retornar():
-    root.withdraw()
-    subprocess.Popen(["python", "menu_adm.py"])
+
 if __name__ == '__main__':
     root = tk.Tk()
     app = FornecedorADMApp(root)
