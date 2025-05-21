@@ -7,7 +7,7 @@ class Database:
                 host="localhost",
                 user="root",
                 password="",
-                database="farmacia_sa2.0"
+                database="farmacia_sa"
             )
             self.cursor = self.connection.cursor()
         except mysql.connector.Error as e:
