@@ -34,7 +34,7 @@ class ClienteADMApp:
 
     def criar_widgets(self):
         # Lista de campos que o formulário irá ter
-        labels = ["ID", "Nome", "Senha", "Email", "Telefone", "CPF"]
+        labels = ["ID", "Nome", "Senha", "email", "telefone", "CPF"]
         self.entries = {}  # Dicionário para armazenar os campos de entrada
 
         # Cria rótulos e campos de entrada para cada item
