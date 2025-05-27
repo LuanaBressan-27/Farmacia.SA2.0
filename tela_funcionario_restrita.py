@@ -18,7 +18,7 @@ class FuncionarioRestritoApp:
 
         # Configurações da janela
         self.root.title("Acesso Funcionário - Consulta")
-        self.root.geometry("800x600")
+        self.root.geometry("1000x700")  # Janela maior para comportar área maior
         self.root.configure(background="#e6f2ff")  # Cor de fundo azul clara
         root.resizable(width=False, height=False)  # Janela fixa (sem redimensionar)
 
@@ -43,7 +43,7 @@ class FuncionarioRestritoApp:
 
     # Cria a área de exibição de dados
     def criar_widgets(self):
-        self.text_area = tk.Text(self.root, height=30, width=100)  # Área de texto para exibição
+        self.text_area = tk.Text(self.root, height=40, width=120)  # Área de texto maior
         self.text_area.pack(padx=10, pady=10)  # Posiciona a área com margem
 
     # Função que busca e exibe os produtos

@@ -1,0 +1,75 @@
+
+'''
+INSERT INTO clientes (nome, senha, email, telefone, cpf) VALUES
+('João Silva', 'senha123', 'joao.silva@example.com', '48912345678', '12345678901'),
+('Maria Oliveira', 'senha456', 'maria.oliveira@example.com', '48987654321', '23456789012'),
+('Carlos Pereira', 'senha789', 'carlos.pereira@example.com', '48911223344', '34567890123'),
+('Ana Souza', 'senha101', 'ana.souza@example.com', '48955667788', '45678901234'),
+('Pedro Santos', 'senha202', 'pedro.santos@example.com', '48999887766', '56789012345'),
+('Fernanda Lima', 'senha303', 'fernanda.lima@example.com', '48966554433', '67890123456'),
+('Lucas Almeida', 'senha404', 'lucas.almeida@example.com', '48944332211', '78901234567'),
+('Juliana Costa', 'senha505', 'juliana.costa@example.com', '48933221100', '89012345678'),
+('Ricardo Martins', 'senha606', 'ricardo.martins@example.com', '48922110099', '90123456789'),
+('Patrícia Ferreira', 'senha707', 'patricia.ferreira@example.com', '48911009988', '01234567890');
+
+
+INSERT INTO funcionarios (nome, cpf, email, telefone, funcao, qtd_vendas, salario, inicio_contrato) VALUES
+('João Silva', '12345678901', 'joao.silva@example.com', '48912345678', 'Vendedor', 50, 3000.00, '2025-01-01'),
+('Maria Oliveira', '23456789012', 'maria.oliveira@example.com', '48987654321', 'Gerente', 30, 5000.00, '2025-02-01'),
+('Carlos Pereira', '34567890123', 'carlos.pereira@example.com', '48911223344', 'Analista', 20, 4000.00, '2025-03-01'),
+('Ana Souza', '45678901234', 'ana.souza@example.com', '48955667788', 'Desenvolvedor', 10, 6000.00, '2025-04-01'),
+('Pedro Santos', '56789012345', 'pedro.santos@example.com', '48999887766', 'Designer', 15, 3500.00, '2025-05-01'),
+('Fernanda Lima', '67890123456', 'fernanda.lima@example.com', '48966554433', 'Marketing', 25, 4500.00, '2025-06-01'),
+('Lucas Almeida', '78901234567', 'lucas.almeida@example.com', '48944332211', 'Suporte', 40, 3200.00, '2025-07-01'),
+('Juliana Costa', '89012345678', 'juliana.costa@example.com', '48933221100', 'Financeiro', 35, 4800.00, '2025-08-01'),
+('Ricardo Martins', '90123456789', 'ricardo.martins@example.com', '48922110099', 'RH', 45, 3700.00, '2025-09-01'),
+('Patrícia Ferreira', '01234567890', 'patricia.ferreira@example.com', '48911009988', 'Consultor', 55, 5200.00, '2025-10-01');
+
+
+INSERT INTO produtos (nome_produto, tipo, quantidade_enviada, tempo_de_validade, data_de_fabricacao, lote, fornecedor, quantidade_em_estoque) VALUES
+('Gloriosa Dê', 'Líquido', 100, '01-06-2025', '2025-01-01', 'Lote 001', 'Nextron', 500),
+('Produto do Projeto X', 'Comprimido', 200, '01-12-2025', '2025-02-01', 'Lote 002', 'Cybersyn', 400),
+('O Querinho', 'Líquido', 150, '01-03-2025', '2025-03-01', 'Lote 003', 'Lumora', 300),
+('Fabuloso', 'Comprimido', 250, '01-09-2025', '2025-04-01', 'Lote 004', 'Quantix', 600),
+('Inovador', 'Líquido', 300, '01-18-2025', '2025-05-01', 'Lote 005', 'Veltor', 700),
+('Glow', 'Comprimido', 350, '01-24-2025', '2025-06-01', 'Lote 006', 'Sombralux', 800),
+('Tendência', 'Líquido', 400, '01-36-2025', '2025-07-01', 'Lote 007', 'Eryndor', 900),
+('Flores Atmosfera', 'Comprimido', 450, '01-48-2025', '2025-08-01', 'Lote 008', 'Obsidium', 1000),
+('Lunar', 'Líquido', 500, '01-60-2025', '2025-09-01', 'Lote 009', 'Aurivian', 1100),
+('Brilhante', 'Comprimido', 550, '01-72-2025', '2025-10-01', 'Lote 010', 'Velasca', 1200);
+
+
+INSERT INTO fornecedores (nome_empresa, email, telefone, produto, transporte, inicio_contrato, final_contrato) VALUES
+('Nextron', 'nextron@example.com', '48912345678', 'Gloriosa Dê', 'terrestre:caminhão', '2025-01-01', '2025-12-31'),
+('Cybersyn', 'cybersyn@example.com', '48987654321', 'Produto do Projeto X', 'terrestre:caminhão', '2025-02-01', '2025-11-30'),
+('Lumora', 'lumora@example.com', '48911223344', 'O Querinho', 'terrestre:caminhão', '2025-03-01', '2025-10-31'),
+('Quantix', 'quantix@example.com', '48955667788', 'Fabuloso', 'terrestre:caminhão', '2025-04-01', '2025-09-30'),
+('Veltor', 'veltor@example.com', '48999887766', 'Inovador', 'terrestre:caminhão', '2025-05-01', '2025-08-31'),
+('Sombralux', 'sombralux@example.com', '48966554433', 'Glow', 'terrestre:caminhão', '2025-06-01', '2025-07-31'),
+('Eryndor', 'eryndor@example.com', '48944332211', 'Tendência', 'terrestre:caminhão', '2025-07-01', '2025-06-30'),
+('Obsidium', 'obsidium@example.com', '48933221100', 'Flores Atmosfera', 'terrestre:caminhão', '2025-08-01', '2025-05-31'),
+('Aurivian', 'aurivian@example.com', '48922110099', 'Lunar', 'terrestre:caminhão', '2025-09-01', '2025-04-30'),
+('Velasca', 'velasca@example.com', '48911009988', 'Brilhante', 'terrestre:caminhão', '2025-10-01', '2025-03-31');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
