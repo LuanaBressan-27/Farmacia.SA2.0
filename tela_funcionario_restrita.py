@@ -49,46 +49,56 @@ class FuncionarioRestritoApp:
     # Função que busca e exibe os produtos
     def mostrar_produtos(self):
         try:
-            produtos = read_products()  # Lê produtos do banco ou arquivo
-            self.text_area.delete(1.0, tk.END)  # Limpa a área de texto
+            produtos = read_products()
+            self.text_area.delete(1.0, tk.END)
+            # Cabeçalho formatado
+            header = "{:<4} {:<20} {:<10} {:<10} {:<12} {:<12} {:<8} {:<15} {:<8}\n".format(
+                "ID", "Nome", "Tipo", "Qtd", "Validade", "Fabricação", "Lote", "Fornecedor", "Estoque"
+            )
+            self.text_area.insert(tk.END, header)
+            self.text_area.insert(tk.END, "-"*110 + "\n")
             for p in produtos:
-                # Formata e insere cada produto na área de exibição
-                self.text_area.insert(
-                    tk.END,
-                    f"ID: {p[0]} | Nome: {p[1]} | Tipo: {p[2]} | Quantidade: {p[3]} | "
-                    f"Validade: {p[4]} | Fabricação: {p[5]} | Lote: {p[6]} | "
-                    f"Fornecedor: {p[7]} | Estoque: {p[8]}\n"
+                linha = "{:<4} {:<20} {:<10} {:<10} {:<12} {:<12} {:<8} {:<15} {:<8}\n".format(
+                    p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8]
                 )
+                self.text_area.insert(tk.END, linha)
         except Exception as e:
-            messagebox.showerror("Erro", str(e))  # Mostra erro se falhar
+            messagebox.showerror("Erro", str(e))
 
     # Função que busca e exibe os fornecedores
     def mostrar_fornecedores(self):
         try:
-            fornecedores = read_suppliers()  # Lê dados dos fornecedores
-            self.text_area.delete(1.0, tk.END)  # Limpa a área de exibição
+            fornecedores = read_suppliers()
+            self.text_area.delete(1.0, tk.END)
+            header = "{:<4} {:<20} {:<25} {:<15} {:<15} {:<12} {:<12} {:<12}\n".format(
+                "ID", "Empresa", "Email", "Telefone", "Produto", "Transporte", "Início", "Final"
+            )
+            self.text_area.insert(tk.END, header)
+            self.text_area.insert(tk.END, "-"*120 + "\n")
             for f in fornecedores:
-                self.text_area.insert(
-                    tk.END,
-                    f"ID: {f[0]} | Empresa: {f[1]} | Email: {f[2]} | Telefone: {f[3]} | "
-                    f"Produto: {f[4]} | Transporte: {f[5]} | Início: {f[6]} | Final: {f[7]}\n"
+                linha = "{:<4} {:<20} {:<25} {:<15} {:<15} {:<12} {:<12} {:<12}\n".format(
+                    f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7]
                 )
+                self.text_area.insert(tk.END, linha)
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
     # Função que busca e exibe os clientes
     def mostrar_clientes(self):
         try:
-            db = DBCliente()  # Instancia conexão com banco de clientes
-            clientes = db.listar_clientes()  # Lista os clientes
-            self.text_area.delete(1.0, tk.END)  # Limpa a área de exibição
+            db = DBCliente()
+            clientes = db.listar_clientes()
+            self.text_area.delete(1.0, tk.END)
+            header = "{:<4} {:<20} {:<15} {:<30} {:<15} {:<15}\n".format(
+                "ID", "Nome", "Senha", "Email", "Telefone", "CPF"
+            )
+            self.text_area.insert(tk.END, header)
+            self.text_area.insert(tk.END, "-"*100 + "\n")
             for c in clientes:
-                # Exibe todos os campos da tabela cliente
-                self.text_area.insert(
-                    tk.END,
-                    f"ID: {c[0]} | Nome: {c[1]} | Senha: {c[2]} | Email: {c[3]} | "
-                    f"Telefone: {c[4]} | CPF: {c[5]}\n"
+                linha = "{:<4} {:<20} {:<15} {:<30} {:<15} {:<15}\n".format(
+                    c[0], c[1], c[2], c[3], c[4], c[5]
                 )
+                self.text_area.insert(tk.END, linha)
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
