@@ -22,16 +22,6 @@ class ClienteADMApp:
         self.criar_menu()
         self.criar_widgets()
 
-    def criar_menu(self):
-        # Cria uma barra de menu superior com opções fictícias
-        menu_bar = Menu(self.root)
-        menu = Menu(menu_bar, tearoff=0)
-        menu.add_command(label="Produtos")
-        menu.add_command(label="Funcionários")
-        menu.add_command(label="Fornecedores")
-        menu_bar.add_cascade(label="Menu", menu=menu)
-        self.root.config(menu=menu_bar)
-
     def criar_widgets(self):
         # Lista de campos que o formulário irá ter
         labels = ["ID", "Nome", "Senha", "email", "telefone", "CPF"]
