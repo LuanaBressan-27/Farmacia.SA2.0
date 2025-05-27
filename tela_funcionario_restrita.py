@@ -81,9 +81,14 @@ class FuncionarioRestritoApp:
         try:
             db = DBCliente()  # Instancia conexão com banco de clientes
             clientes = db.listar_clientes()  # Lista os clientes
-            self.text_area.delete(1.0, tk.END)
+            self.text_area.delete(1.0, tk.END)  # Limpa a área de exibição
             for c in clientes:
-                self.text_area.insert(tk.END, f"ID: {c[0]} | Nome: {c[1]}\n")
+                # Exibe todos os campos da tabela cliente
+                self.text_area.insert(
+                    tk.END,
+                    f"ID: {c[0]} | Nome: {c[1]} | Senha: {c[2]} | Email: {c[3]} | "
+                    f"Telefone: {c[4]} | CPF: {c[5]}\n"
+                )
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
